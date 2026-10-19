@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ATOMA MVP (UI Demo)
 
-## Getting Started
+UI-only Next.js demo for **ATOMA**, an Afghanistan telecom concept site. All data is static / in-memory, persisted in `localStorage` under `atoma-mvp-demo`. No real backend, SMS, or payments.
 
-First, run the development server:
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Demo credentials
 
-## Learn More
+| Role     | How to sign in                                      |
+|----------|-----------------------------------------------------|
+| Customer | Mobile `0771234567` → OTP any 6 digits              |
+| Admin    | Mobile `0700000000` → OTP any 6 digits **or** `/admin/login` password `admin123` |
 
-To learn more about Next.js, take a look at the following resources:
+Seed customer: **Ahmad Karimi**, prepaid **ATOMA Plus 599**, balance **450 AFN**, one active SIM.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## What’s included
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Public: home, plans, prepaid/postpaid, VAS, roaming, app, finance, stores, ATOMA Pay, coverage, help
+- Auth: login / register with mock OTP
+- Self-care: dashboard, profile, SIM, usage, recharge, bills/invoices, plan change, complaints
+- Support tickets + global chatbot
+- Shop + order flow
+- Admin: dashboard, banner CRUD, CMS edit, ticket/complaint moderation
 
-## Deploy on Vercel
+Language toggle: **EN / دری / پښتو** (nav and common labels).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Fonts:** English uses Space Grotesk + Figtree. Dari and Pashto use **Bahij Zar** by Bahij Virtual Academy (personal use) from `src/fonts/bahij-zar/` — also installed for the current Windows user. Switching to دری or پښتو applies Bahij Zar and RTL layout.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use **Reset demo data** in the footer to clear `localStorage` and restore seeds.

@@ -1,26 +1,280 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #073b4c;
+  --ink-soft: #0a4f66;
+  --amber: #f4a261;
+  --amber-deep: #e76f51;
+  --stone: #f3ebe2;
+  --stone-deep: #e6d9cb;
+  --sand: #faf6f1;
+  --mist: #d8e4e8;
+  --success: #2a9d8f;
+  --danger: #c1121f;
+  --background: var(--sand);
+  --foreground: var(--ink);
+  --radius: 0.75rem;
+  --shadow-soft: 0 12px 40px rgba(7, 59, 76, 0.08);
+  --network:
+    radial-gradient(circle at 20% 20%, rgba(244, 162, 97, 0.18), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(7, 59, 76, 0.12), transparent 32%),
+    linear-gradient(135deg, rgba(7, 59, 76, 0.04) 0%, transparent 40%),
+    repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 18px,
+      rgba(7, 59, 76, 0.035) 18px,
+      rgba(7, 59, 76, 0.035) 19px
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      transparent,
+      transparent 22px,
+      rgba(244, 162, 97, 0.04) 22px,
+      rgba(244, 162, 97, 0.04) 23px
+    );
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-amber: var(--amber);
+  --color-amber-deep: var(--amber-deep);
+  --color-stone: var(--stone);
+  --color-stone-deep: var(--stone-deep);
+  --color-sand: var(--sand);
+  --color-mist: var(--mist);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-figtree);
+  --font-dari-pashto: var(--font-bahij-zar);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  min-height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  background-image: var(--network);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Dari (fa) & Pashto (ps): Bahij Zar by Bahij Virtual Academy (personal use) */
+html.lang-fa,
+html.lang-ps,
+html.lang-fa body,
+html.lang-ps body {
+  font-family: var(--font-bahij-zar), "Bahij Zar", Tahoma, sans-serif;
+}
+
+html.lang-fa h1,
+html.lang-fa h2,
+html.lang-fa h3,
+html.lang-fa .font-display,
+html.lang-ps h1,
+html.lang-ps h2,
+html.lang-ps h3,
+html.lang-ps .font-display {
+  font-family: var(--font-bahij-zar), "Bahij Zar", Tahoma, sans-serif;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+html.lang-fa,
+html.lang-ps {
+  direction: rtl;
+}
+
+html.lang-en {
+  direction: ltr;
+}
+
+.font-bahij {
+  font-family: var(--font-bahij-zar), "Bahij Zar", Tahoma, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.55s ease both;
+}
+
+.hero-plane {
+  background:
+    linear-gradient(120deg, rgba(7, 59, 76, 0.92) 0%, rgba(7, 59, 76, 0.55) 42%, rgba(244, 162, 97, 0.35) 100%),
+    radial-gradient(circle at 70% 40%, rgba(244, 162, 97, 0.45), transparent 45%),
+    linear-gradient(180deg, #0a4f66 0%, #073b4c 55%, #5c3d2e 100%);
+}
+
+.network-dots {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px),
+    linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.08) 100%);
+  background-size: 28px 28px, 100% 100%;
+}
+
+.panel {
+  background: rgba(250, 246, 241, 0.88);
+  border: 1px solid rgba(7, 59, 76, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: #ffb57a;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(7, 59, 76, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(7, 59, 76, 0.05);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.btn-ink:hover {
+  background: var(--ink-soft);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid rgba(7, 59, 76, 0.18);
+  background: #fff;
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: var(--ink);
+}
+
+.input:focus {
+  outline: 2px solid rgba(244, 162, 97, 0.55);
+  border-color: var(--amber);
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--ink-soft);
+}
+
+.tab {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+}
+
+.tab[data-active="true"] {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.usage-bar {
+  height: 0.65rem;
+  border-radius: 999px;
+  background: var(--mist);
+  overflow: hidden;
+}
+
+.usage-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--ink), var(--amber));
+  border-radius: inherit;
 }
